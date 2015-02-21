@@ -32,7 +32,7 @@ public class DataScraper {
 
         for(Element row : playerTable.get(0).children()){
 
-            String name, position;
+            String name, position, teamAbbr;
             int price;
             double pointsPerGame;
 
@@ -47,10 +47,11 @@ public class DataScraper {
 
             position = row.getElementsByAttributeValue("class", "player-position").text();
             pointsPerGame = Double.parseDouble(row.getElementsByAttributeValue("class", "player-fppg").text());
+            teamAbbr = row.getElementsByTag("b").text();
 
             if(pointsPerGame <= 0.0) continue; // Don't include players with less than or equal to 0.0 fantasy points per game
 
-            playerList.add(new Player(name, price, pointsPerGame, position));
+            playerList.add(new Player(name, price, pointsPerGame, position, teamAbbr));
 
         }
 
@@ -150,7 +151,7 @@ public class DataScraper {
             if (cells.get(1).text().contains("vs")) site = "home";
             else site = "away";
 
-            System.out.println("added game for: " + player.getName());
+            //System.out.println("added game for: " + player.getName());
 
             games.add(new PlayerGameStats(date, points, assists, rebounds, blocks, steals, site, turnovers, player));
         }

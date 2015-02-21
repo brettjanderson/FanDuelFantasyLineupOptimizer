@@ -27,7 +27,7 @@ public class Player implements Comparable<Player> {
 
         //TODO: Needs to be in another class. Decouple.
         this.espnPlayerId = PlayerDataResourcesController.getEspnPlayerId(this);
-        gameStats = DataScraper.getGameStatsForPlayer(this);
+        //gameStats = DataScraper.getGameStatsForPlayer(this);
     }
 
     public int getSalary(){
@@ -63,5 +63,9 @@ public class Player implements Comparable<Player> {
     @Override
     public int compareTo(Player otherPlayer) {
         return (int) Math.round(price/pointsPerGame - otherPlayer.getSalary()/otherPlayer.getEstimatedPoints());
+    }
+
+    public String getTeamNameAbbr() {
+        return teamNameAbbr;
     }
 }

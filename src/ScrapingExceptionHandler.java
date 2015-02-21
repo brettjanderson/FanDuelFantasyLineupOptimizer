@@ -16,6 +16,6 @@ public class ScrapingExceptionHandler {
     }
 
     public static void printPlayersNotFound() {
-        for(Player p: playersNotFound) System.out.println(p.getName() + " " + p.getPosition());
+        for(Player p: playersNotFound) System.out.println(p.getName() + " " + p.getPosition() + " " + p.getTeamNameAbbr());
     }
 }

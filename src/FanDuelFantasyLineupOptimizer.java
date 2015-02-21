@@ -20,7 +20,6 @@ public class FanDuelFantasyLineupOptimizer {
 
         playerList = DataScraper.getFanDuelPlayerList();
 
-        minSalary = findMinSalary(playerList);
         Collections.sort(playerList);
 
         for(Player p : playerList) {
@@ -30,19 +29,16 @@ public class FanDuelFantasyLineupOptimizer {
 
         ScrapingExceptionHandler.printPlayersNotFound();
 
+        RosterSolution optimalLineup = PlayerKnapSackAnalysisTool.getOptimumRoster(playerList);
+
+        System.out.println("=======================");
+        System.out.println("Optimal Lineup");
+        System.out.println("=======================");
+
+        System.out.println(optimalLineup);
+
+
+
     }
 
-    public static RosterSolution getOptimumSolution(ArrayList<Player> playersList, int salaryLeft) {
-        return null;
-    }
-
-    public static int findMinSalary(ArrayList<Player> playerList){
-        int min = Integer.MAX_VALUE;
-
-        for(Player p : playerList){
-            if(p.getSalary() < min) min = p.getSalary();
-        }
-
-        return min;
-    }
  }
