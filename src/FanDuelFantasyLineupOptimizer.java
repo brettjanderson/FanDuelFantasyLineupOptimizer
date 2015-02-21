@@ -1,19 +1,16 @@
 /**
- * Created by Brettness on 2/18/15.
+ * Created by Brett Anderson.
+ *
+ * Main Class
+ *
+ *
  */
-
-import org.jsoup.*;
-
-import javax.xml.crypto.Data;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 
-public class PlayerStats {
+public class FanDuelFantasyLineupOptimizer {
 
-    static ArrayList<Player> playersTaken = new ArrayList<Player>();
     static int minSalary;
 
     public static void main(String[] args) throws IOException {
@@ -21,7 +18,7 @@ public class PlayerStats {
 
         ArrayList<Player> playerList;
 
-        playerList = DataScraper.getPlayerList();
+        playerList = DataScraper.getFanDuelPlayerList();
 
         minSalary = findMinSalary(playerList);
         Collections.sort(playerList);
@@ -31,7 +28,7 @@ public class PlayerStats {
             System.out.println(p);
         }
 
-        ProblemsCatcher.printPlayersNotFound();
+        ScrapingExceptionHandler.printPlayersNotFound();
 
     }
 

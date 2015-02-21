@@ -2,43 +2,41 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Brett on 2/18/15.
+ * Created by Brett Anderson
+ *
+ * Player class represents a player built specifically
+ * from the FanDuel list.
  */
 public class Player implements Comparable<Player> {
 
-    private PlayerStats stats;
+    private FanDuelFantasyLineupOptimizer stats;
     private String name;
     private int price;
     private String espnPlayerId;
     private String position;
     private double pointsPerGame;
     private ArrayList<PlayerGameStats> gameStats;
+    private String teamNameAbbr;
 
-    public Player(String name, int price, double pointsPerGame, String position) throws IOException {
+    public Player(String name, int price, double pointsPerGame, String position, String teamNameAbbr) throws IOException {
         this.name = name;
         this.price = price;
         this.pointsPerGame = pointsPerGame;
         this.position = position;
-        this.espnPlayerId = PlayerDataResourcesController.getPlayerEspnId(this);
-        gameStats = PlayerDataResourcesController.getGameStatsForPlayer(this);
+        this.teamNameAbbr = teamNameAbbr;
+
+        //TODO: Needs to be in another class. Decouple.
+        this.espnPlayerId = PlayerDataResourcesController.getEspnPlayerId(this);
+        gameStats = DataScraper.getGameStatsForPlayer(this);
     }
 
     public int getSalary(){
         return price;
     }
 
-    public String toString(){
-        return name + " " + position + " " +  pointsPerGame + " " + price;
-    }
-
     public double getEstimatedPoints(){
-        //TODO: Better way to estimate this.
+        //TODO: Estimate this with the statistical tool.
         return pointsPerGame;
-    }
-
-    @Override
-    public int compareTo(Player otherPlayer) {
-        return (int) Math.round(price/pointsPerGame - otherPlayer.getSalary()/otherPlayer.getEstimatedPoints());
     }
 
     public String getPosition() {
@@ -57,4 +55,13 @@ public class Player implements Comparable<Player> {
         return espnPlayerId;
     }
 
+    @Override
+    public String toString(){
+        return name + " " + position + " " +  pointsPerGame + " " + price;
+    }
+
+    @Override
+    public int compareTo(Player otherPlayer) {
+        return (int) Math.round(price/pointsPerGame - otherPlayer.getSalary()/otherPlayer.getEstimatedPoints());
+    }
 }

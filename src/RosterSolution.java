@@ -1,14 +1,20 @@
+/**
+ * Created by Brett Anderson.
+ *
+ * Roster Solution class is used to keep track of a
+ * viable roster for evaluation during the knapsack
+ * optimizer.
+ */
 import java.util.ArrayList;
 
-/**
- * Created by Brettness on 2/19/15.
- */
 public class RosterSolution {
 
     private ArrayList<Player> roster;
     private int numberOfForwards;
     private int numberOfGaurds;
     private int totalSalary;
+    private final int NEEDED_GUARDS = 4;
+    private final int NEEDED_FORWARDS = 5;
 
 
     public RosterSolution(){
@@ -17,6 +23,7 @@ public class RosterSolution {
     }
 
     public void addPlayer(Player player){
+
         if(player.getPosition().equals("G"))
             numberOfGaurds++;
 
@@ -25,6 +32,7 @@ public class RosterSolution {
 
         roster.add(player);
         totalSalary += player.getSalary();
+
     }
 
     public int getNumberOfForwards() {
@@ -37,5 +45,17 @@ public class RosterSolution {
 
     public int getNumberOfPlayers(){
         return roster.size();
+    }
+
+    @Override
+    public String toString() {
+
+        String rosterString = "";
+
+        for(Player player: roster){
+            rosterString += player.toString() + "\n";
+        }
+
+        return rosterString;
     }
 }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PlayerStats.iml" filepath="$PROJECT_DIR$/PlayerStats.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FanDuelFantasyLineupOptimizer.iml" filepath="$PROJECT_DIR$/FanDuelFantasyLineupOptimizer.iml" />
     </modules>
   </component>
 </project>

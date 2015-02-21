@@ -1,21 +1,21 @@
 import java.util.ArrayList;
 
 /**
- * Created by Brettness on 2/19/15.
+ * Created by Brett Anderson.
+ *
+ * The ScrapingExceptionHandler class helps to
+ * log and handle problems with scraping data on FanDuel or
+ * ESPN.
  */
-public class ProblemsCatcher {
+public class ScrapingExceptionHandler {
 
     private static ArrayList<Player> playersNotFound = new ArrayList<Player>();
 
     public static void addPlayerNotFound(Player p){
-
         playersNotFound.add(p);
-
     }
 
     public static void printPlayersNotFound() {
-
         for(Player p: playersNotFound) System.out.println(p.getName() + " " + p.getPosition());
-
     }
 }
